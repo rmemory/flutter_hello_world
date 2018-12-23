@@ -4,9 +4,13 @@ import './my_text.dart';
 
 class TextControl extends StatefulWidget {
   final bool initialButtonValue;
+  final Function updateText;
 
   // Constructor
-  TextControl({this.initialButtonValue = true});
+  TextControl({
+    this.initialButtonValue = true,
+    this.updateText,
+    });
 
   @override
   State<StatefulWidget> createState() {
@@ -42,8 +46,9 @@ class _TextControlState extends State<TextControl> {
             setState(() {
               _buttonValue = !_buttonValue ;
                 });
+              widget.updateText(_buttonValue);
             },
-            child: MyText(_buttonValue.toString()),
+            child: MyText(_buttonValue ? "Toggle Text" : "Text Toggled"),
           ),
     );
   }
